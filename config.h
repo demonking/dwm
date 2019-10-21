@@ -20,6 +20,14 @@ static const char *colors[][3]      = {
 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
 };
 
+ /* Legacy*/
+static const char normbgcolor[]     = "#222222";
+static const char normfgcolor[]     = "#bbbbbb";
+//static const char selbordercolor[]  = "#005577";
+static const char selbordercolor[]  = "#09ef59";
+static const char selbgcolor[]      = "#005577";
+static const char selfgcolor[]      = "#eeeeee";
+
 /* tagging */
 static const char *tags[] = { 
     "\xef\x85\xbc",
@@ -28,7 +36,6 @@ static const char *tags[] = {
     "\xee\x9c\x90",
     "\xe2\x99\xaa",
 };
-
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -44,15 +51,13 @@ static const Rule rules[] = {
 /* layout(s) */
 static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
-static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
+static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
-//	{ "TTT",      bstack },
-//	{ "===",      bstackhoriz },
 };
 
 /* key definitions */
@@ -63,7 +68,6 @@ static const Layout layouts[] = {
 	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
-/* helper for spawning shell commands in the pre dwm-5.0 fashion */
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/zsh", "-c", cmd, NULL } }
 
@@ -78,7 +82,6 @@ static const char *volumeup[]   = { "amixer", "-q", "set", "Master", "2%+", "unm
 static const char *mpc_prev[]   = { "mpc",  "prev", NULL };
 static const char *mpc_next[]   = { "mpc",  "next", NULL };
 static const char *mpc_toggle[] = { "mpc",  "toggle", NULL };
-
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -108,13 +111,14 @@ static Key keys[] = {
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
-	TAGKEYS(                        XK_4,                      3)
-	TAGKEYS(                        XK_5,                      4)
-	TAGKEYS(                        XK_6,                      5)
-	TAGKEYS(                        XK_7,                      6)
-	TAGKEYS(                        XK_8,                      7)
-	TAGKEYS(                        XK_9,                      8)
-	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	TAGKEYS(                        XK_q,                      3)
+	TAGKEYS(                        XK_w,                      4)
+	TAGKEYS(                        XK_e,                      5)
+	TAGKEYS(                        XK_a,                      6)
+	TAGKEYS(                        XK_s,                      7)
+	//TAGKEYS(                        XK_9,                      8)
+	{ MODKEY|ShiftMask,             XK_Escape, quit,           {0} },
+	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = lockcmd }},
 };
 
 /* button definitions */
