@@ -69,12 +69,12 @@ static const Layout layouts[] = {
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
-#define SHCMD(cmd) { .v = (const char*[]){ "/bin/zsh", "-c", cmd, NULL } }
+#define SHCMD(cmd) { .v = (const char*[]){ "/usr/bin/kitty", "-e", cmd, NULL } }
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[]  = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
-static const char *termcmd[]   = { "st", NULL };
+static const char *termcmd[]   = { "kitty", NULL };
 static const char *lockcmd[]   = { "slock", NULL };
 static const char *mutesound[] = { "amixer","-q","-D","pulse","sset","Master","toggle", NULL };
 static const char *volumedown[] = { "amixer", "-q", "set", "Master", "2%-", "unmute", NULL };
